@@ -4,7 +4,7 @@ public class Vector {
 	private double vArray[];
 
 	// constructor
-	public Vector (double r, double c) { // constructor for three
+	public Vector (double r, double c) {
 		vArray = new double[]{r, c};
 	}
 
@@ -38,6 +38,11 @@ public class Vector {
 			vArray = B.getArray();
 		}
 	}
+
+  public void boundaryConditions(int rMax, int cMax) {
+    vArray[0] = vArray[0] < rMax ? (vArray[0] < 0 ? (double)rMax + (vArray[0] / (double)rMax) - (long)(vArray[0] / (double)rMax) : vArray[0]) : (vArray[0] / (double)rMax) - (long)(vArray[0] / (double)rMax);
+    vArray[1] = vArray[1] < cMax ? (vArray[1] < 0 ? (double)cMax + (vArray[1] / (double)cMax) - (long)(vArray[1] / (double)cMax) : vArray[1]) : (vArray[1] / (double)cMax) - (long)(vArray[1] / (double)cMax);
+  }
 
 	// static methods
 	public static Vector add(Vector A, Vector B) { // static method to add A to B

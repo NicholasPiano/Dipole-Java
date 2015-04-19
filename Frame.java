@@ -42,20 +42,31 @@ class Panel extends JPanel {
     // paint background
     super.paintComponent(g);
 
-    // paint monopoles
-    for (Monopole m : this.M) {
+    int size = 10;
 
+    // paint monopoles
+    g.setColor(Color.white);
+    for (Monopole m : this.M) {
+      int r = (int)m.getPosition().getArray()[0] - (int)(size/2.0); //account for size of oval
+      int c = (int)m.getPosition().getArray()[1] - (int)(size/2.0);
+      g.fillOval(r, c, size, size);
     }
 
   }
 
   public void update (Monopole[] monopoleArray) {
-
+    setMonopoles(monopoleArray);
+    repaint();
   }
 
   public Dimension getPreferredSize() {
   	setSize(600, 600);
   	return getSize();
+  }
+
+  // get and set
+  public void setMonopoles (Monopole[] monopoleArray) {
+    this.M = monopoleArray;
   }
 
 }
