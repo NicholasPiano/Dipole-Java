@@ -10,7 +10,6 @@ public class Frame extends JFrame {
     // bounds and layout
     setBounds(100, 100, 600, 600);
 		setBackground(Color.black);
-
 		getContentPane().setLayout(new BorderLayout());
 
     // panel
@@ -20,6 +19,10 @@ public class Frame extends JFrame {
 
     // exit on close
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  }
+
+  public void update (Monopole[] M) {
+    this.P.update(M);
   }
 
 }
@@ -36,6 +39,13 @@ class Panel extends JPanel {
   }
 
   public void paintComponent (Graphics g) {
+    // paint background
+    super.paintComponent(g);
+
+    // paint monopoles
+    for (Monopole m : this.M) {
+
+    }
 
   }
 

@@ -41,6 +41,30 @@ public class Run {
     F.pack();
     F.setVisible(true);
 
+    // infinite loop for simulation
+    while (true) {
+      this.update();
+    }
+
+  }
+
+  public void update () {
+
+    // loop through monopoles twice and update the positions
+    for (Monopole i : this.M) {
+      for (Monopole j : this.M) {
+        if (i.getId()!=j.getId()) {
+
+          // get distance for strength
+
+          // get 
+
+        }
+      }
+    }
+
+    // update frame with new monopoles
+    this.F.update(this.M);
   }
 
 }
