@@ -21,8 +21,8 @@ public class Frame extends JFrame {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
   }
 
-  public void update (Monopole[] M) {
-    this.P.update(M);
+  public void update (Monopole[] M, double maxSpeed) {
+    this.P.update(M, maxSpeed);
   }
 
 }
@@ -30,6 +30,7 @@ public class Frame extends JFrame {
 class Panel extends JPanel {
 
   Monopole[] M;
+  double ms;
 
   public Panel (Monopole[] monopoleArray) {
 
@@ -45,17 +46,19 @@ class Panel extends JPanel {
     int size = 10;
 
     // paint monopoles
-    g.setColor(Color.white);
     for (Monopole m : this.M) {
       int r = (int)m.getPosition().getArray()[0] - (int)(size/2.0); //account for size of oval
       int c = (int)m.getPosition().getArray()[1] - (int)(size/2.0);
+      double v = m.getVelocity().getMagnitude();
+      g.setColor(Color.getHSBColor(1.0f, 1.0f, (float)(v/this.ms)));
       g.fillOval(r, c, size, size);
     }
 
   }
 
-  public void update (Monopole[] monopoleArray) {
+  public void update (Monopole[] monopoleArray, double maxSpeed) {
     setMonopoles(monopoleArray);
+    setMS(maxSpeed);
     repaint();
   }
 
@@ -67,6 +70,10 @@ class Panel extends JPanel {
   // get and set
   public void setMonopoles (Monopole[] monopoleArray) {
     this.M = monopoleArray;
+  }
+
+  public void setMS (double maxSpeed) {
+    this.ms = maxSpeed > this.ms ? maxSpeed : this.ms;
   }
 
 }

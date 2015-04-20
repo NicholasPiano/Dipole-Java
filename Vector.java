@@ -67,13 +67,13 @@ public class Vector {
 		return Vector.sub(A, B).getMagnitude();
 	}
 
-	public static Vector dot(Vector A, Vector B) { //dot product of A and B
+	public static double dot(Vector A, Vector B) { //dot product of A and B
 		int len = A.getArray().length;
-		double products[] = new double[len];
+		double sum = 0.0;
 		for (int i = 0; i<len; i++) {
-			products[i] = A.getArray()[i]*B.getArray()[i];
+			sum += A.getArray()[i]*B.getArray()[i];
 		}
-		return new Vector(products);
+		return sum;
 	}
 
 	//setters
